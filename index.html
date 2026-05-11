@@ -232,17 +232,77 @@ button.bg-slate-900:hover {
         👤
     </button>
 
-    <!-- Dropdown -->
-    <div id="menu" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-xl shadow-lg border overflow-hidden">
 
-        <button onclick="loginUser()" 
-            class="block w-full text-left px-4 py-3 hover:bg-gray-100">
-            Login
-        </button>
 
-        <button onclick="openModal('registerModal')" 
-            class="block w-full text-left px-4 py-3 hover:bg-gray-100">
-            Create Account
+<!-- Firebase + Authentication -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDbvFccDlRwxL8gJ9wzC8ytisZktr2UJwY",
+    authDomain: "everything-rwanda-5840b.firebaseapp.com",
+    projectId: "everything-rwanda-5840b",
+    storageBucket: "everything-rwanda-5840b.appspot.com",
+    messagingSenderId: "887707817213",
+    appId: "1:887707817213:web:03f464dd18eacee93f5a94",
+    measurementId: "G-Q30E7HQ0X6"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // ---------------- LOGIN ----------------
+  window.loginUser = function () {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Login successful!");
+        closeModal('loginModal');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  // ---------------- REGISTER ----------------
+  window.registerUser = function () {
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Account created successfully!");
+        closeModal('registerModal');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
+  // ---------------- FORGOT PASSWORD ----------------
+  window.resetPassword = function () {
+    const email = document.getElementById("forgotEmail").value;
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent!");
+        closeModal('forgotModal');
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+</script>
+
+    
         </button>
 
         <button onclick="openModal('forgotModal')" 
