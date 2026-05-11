@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Join Our Team</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #059669;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            background: white;
+            margin: 20px auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 { text-align: center; color: var(--primary-color); margin-bottom: 10px; }
+        p.subtitle { text-align: center; color: #64748b; margin-bottom: 30px; }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-group { 
+            margin-bottom: 20px; 
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .full-width { flex: 1 0 100%; }
+
+        label { display: block; font-weight: 600; margin-bottom: 8px; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Rwanda Section Styling */
+        #rwandaDetails {
+            display: none;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover { background-color: #1d4ed8; }
+
+        #statusMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Apply Now</h2>
+    <p class="subtitle">Show us what you've got!</p>
+
+    <form id="jobApplication">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" placeholder="Ex: IRANZI Aime Kevin" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" placeholder="iranzik@example.com" required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="dob">Date of Birth *</label>
+                <input type="date" id="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Years of Experience *</label>
+                <input type="number" id="experience" min="0" placeholder="Ex: 3" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="pob">Place of Birth (City/Country) *</label>
+            <input type="text" id="pob" placeholder="Ex: Kigali, Rwanda" required>
+        </div>
+
+        <div class="form-group">
+            <label for="countryResidence">Country of Residence *</label>
+            <select id="countryResidence" required>
+                <option value="">-- Select Country --</option>
+                <option value="Rwanda">Rwanda</option>
+                </select>
+        </div>
+
+        <div id="rwandaDetails">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Province</label>
+                    <select id="province">
+                        <option value="">Select Province</option>
+                        <option>Kigali City</option>
+                        <option>Northern Province</option>
+                        <option>Southern Province</option>
+                        <option>Eastern Province</option>
+                        <option>Western Province</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>District</label>
+                    <select id="district">
+                        <option value="">Select District</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Sector</label><input type="text" id="sector"></div>
+                <div class="form-group"><label>Cell</label><input type="text" id="cell"></div>
+                <div class="form-group"><label>Village</label><input type="text" id="village"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="position">Position Applied For</label>
+            <select id="position">
+                <option value="nurse">General Nurse</option>
+                <option value="dev">Website Developer</option>
+                <option value="designer">UI/UX Designer</option>
+                <option value="pm">Product Manager</option>
+                <option value="gp">General Practitioner</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="resume">Resume (PDF only) *</label>
+            <input type="file" id="resume" accept=".pdf" required>
+        </div>
+
+        <div class="form-group">
+            <label for="coverLetter">Why should we hire you?</label>
+            <textarea id="coverLetter" rows="4" placeholder="Tell us about your strengths..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Send Application</button>
+    </form>
+
+    <div id="statusMessage"></div>
+</div>
+
+<script>
+    // 1. Populate All Countries
+    const countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Rep","Chad","Chile","China","Colombia","Comoros","Congo","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Ivory Coast","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea North","Korea South","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russian Federation","Saint Kitts & Nevis","Saint Lucia","Saint Vincent","Samoa","San Marino","Sao Tome & Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+    
+    const countrySelect = document.getElementById('countryResidence');
+    countries.forEach(c => {
+        if(c !== "Rwanda") {
+            let el = document.createElement("option");
+            el.textContent = c; el.value = c;
+            countrySelect.appendChild(el);
+        }
+    });
+
+    // 2. Rwanda Administrative Logic
+    const rwandaData = {
+        "Kigali City": ["Nyarugenge", "Gasabo", "Kicukiro"],
+        "Northern Province": ["Burera", "Gakenke", "Gicumbi", "Musanze", "Rulindo"],
+        "Southern Province": ["Gisagara", "Huye", "Kamonyi", "Muhanga", "Nyamagabe", "Nyanza", "Nyaruguru", "Ruhango"],
+        "Eastern Province": ["Bugesera", "Gatsibo", "Kayonza", "Kirehe", "Ngoma", "Nyagatare", "Rwamagana"],
+        "Western Province": ["Karongi", "Ngororero", "Nyabihu", "Nyamasheke", "Rubavu", "Rusizi", "Rutsiro"]
+    };
+
+    countrySelect.addEventListener('change', function() {
+        document.getElementById('rwandaDetails').style.display = (this.value === "Rwanda") ? "block" : "none";
+    });
+
+    document.getElementById('province').addEventListener('change', function() {
+        const districtSelect = document.getElementById('district');
+        districtSelect.innerHTML = '<option value="">Select District</option>';
+        if(this.value) {
+            rwandaData[this.value].forEach(d => {
+                let el = document.createElement("option");
+                el.textContent = d; el.value = d;
+                districtSelect.appendChild(el);
+            });
+        }
+    });
+
+    // 3. Form Submission
+    document.getElementById('jobApplication').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('statusMessage');
+
+        btn.disabled = true;
+        btn.innerText = 'Uploading...';
+        status.style.display = 'block';
+        status.style.backgroundColor = '#dcfce7';
+        status.style.color = '#166534';
+        status.innerText = 'Processing your application...';
+
+        setTimeout(() => {
+            btn.innerText = 'Application Sent!';
+            btn.style.backgroundColor = '#059669';
+            status.innerText = 'Success! Your application has been submitted.';
+        }, 2000);
+    });
+</script>
+</body>
+</html>

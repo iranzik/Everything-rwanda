@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Join Our Team</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --success-color: #059669;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            margin: 20px auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 { text-align: center; color: var(--primary-color); margin-bottom: 10px; }
+        p.subtitle { text-align: center; color: #64748b; margin-bottom: 30px; }
+
+        .form-group { margin-bottom: 20px; }
+
+        label { display: block; font-weight: 600; margin-bottom: 8px; }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            ring: 2px solid var(--primary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover { background-color: #1d4ed8; }
+
+        /* Status Messages */
+        #statusMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .error-border { border: 2px solid #ef4444 !important; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Apply Now</h2>
+    <p class="subtitle">Show us what you've got!</p>
+
+    <form id="jobApplication">
+        <div class="form-group">
+            <label for="fullName">Full Name *</label>
+            <input type="text" id="fullName" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="position">Position Applied For</label>
+            <select id="position">
+                <option value="frontend">Frontend Developer</option>
+                <option value="backend">Backend Developer</option>
+                <option value="designer">UI/UX Designer</option>
+                <option value="pm">Product Manager</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="resume">Resume (PDF only) *</label>
+            <input type="file" id="resume" accept=".pdf" required>
+        </div>
+
+        <div class="form-group">
+            <label for="coverLetter">Why should we hire you?</label>
+            <textarea id="coverLetter" rows="4" placeholder="Tell us about your strengths..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Send Application</button>
+    </form>
+
+    <div id="statusMessage"></div>
+</div>
+
+<script>
+    document.getElementById('jobApplication').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('statusMessage');
+        const email = document.getElementById('email').value;
+
+        // Simple Email Validation Check
+        if (!email.includes('@')) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        // Simulate a "Processing" state
+        btn.disabled = true;
+        btn.innerText = 'Uploading...';
+        status.style.display = 'block';
+        status.style.backgroundColor = '#dcfce7';
+        status.style.color = '#166534';
+        status.innerText = 'Processing your application...';
+
+        // Simulate an API call
+        setTimeout(() => {
+            btn.innerText = 'Application Sent!';
+            btn.style.backgroundColor = '#059669';
+            status.innerText = 'Success! Your application has been submitted to our HR team.';
+            
+            // Optional: Reset form after 3 seconds
+            setTimeout(() => {
+                document.getElementById('jobApplication').reset();
+                btn.disabled = false;
+                btn.innerText = 'Send Application';
+                btn.style.backgroundColor = '#2563eb';
+            }, 3000);
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>
